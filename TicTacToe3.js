@@ -10,9 +10,6 @@ function startTurn() {
 	var tr=Math.floor((Math.random()* 2)+ 1);
 	hasWinner=0;
 	
-function boardMsg(x) {
-	return $("#board").text(x);
-}
 	if(tr==1){
 		turn=player1Name;
 		boardMsg(player1Name+" starts the game!!");
@@ -22,6 +19,7 @@ function boardMsg(x) {
 		boardMsg(player2Name+" starts the game!!");
 	}
 }
+
 function setGame() {
 	console.log("setGame");
 	turn="";
@@ -32,14 +30,10 @@ function setGame() {
 	}).get();
 	hasWinner=0;
 	moveCount=0;
-	console.log("setGame2");
 }
 
 $("#play").click(function() {
 
-	if(hasWinner==1){
-		setGame();
-	}
 	player1Name=$("#playerId1").val();
 	player2Name=$("#playerId2").val();
 
@@ -57,7 +51,10 @@ $("#play").click(function() {
 });
 
 $(".sqr").click(function() {
-
+	if(player1Name=="" || player2Name==""){
+		alert("Click on Play to start Game!");
+		return;
+	} 
 
 	var row=$(this).parent().index();
 	var sqr=$(this).index();
@@ -106,6 +103,7 @@ $(".sqr").click(function() {
 			return;
 		}
 	}
+
 });
 
 function winnerCheck(n,playerName) {
@@ -140,10 +138,11 @@ $("#reset").click(function() {
 });
 
 function reset(table) {
-	table.find('td').each(function() {
-		$(this).removeClass('circle').removeClass('cross');
+	table.find("td").each(function() {
+		$(this).removeClass("circle").removeClass("cross");
 		
 		setGame();
 		startTurn();
+		$("#reset").text("Reset");
 	});
 }
