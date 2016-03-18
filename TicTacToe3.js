@@ -26,7 +26,7 @@ function setGame() {
 	console.log("setGame");
 	turn="";
 	grid=[[0,0,0],[0,0,0],[0,0,0]];
-	boardMsg=("");
+	boardMsg("");
 	$(".sqr").map(function() {
 		$(this).text("");
 	}).get();
