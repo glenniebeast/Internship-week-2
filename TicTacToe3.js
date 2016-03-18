@@ -9,6 +9,10 @@ function boardMsg(x) {
 function startTurn() {
 	var tr=Math.floor((Math.random()* 2)+ 1);
 	hasWinner=0;
+	
+function boardMsg(x) {
+	return $("#board").text(x);
+}
 	if(tr==1){
 		turn=player1Name;
 		boardMsg(player1Name+" starts the game!!");
@@ -19,14 +23,16 @@ function startTurn() {
 	}
 }
 function setGame() {
+	console.log("setGame");
 	turn="";
-	grid=[0,0,0],[0,0,0],[0,0,0];
+	grid=[[0,0,0],[0,0,0],[0,0,0]];
 	boardMsg=("");
 	$(".sqr").map(function() {
 		$(this).text("");
 	}).get();
 	hasWinner=0;
 	moveCount=0;
+	console.log("setGame2");
 }
 
 $("#play").click(function() {
@@ -40,21 +46,19 @@ $("#play").click(function() {
 	
 	if(player1Name==""){ 
         player1Name=("Player 1 ");
-        
+        startTurn();
     } 
     if(player2Name=="") {
     	player2Name=("Player 2 ");
-    	
+    	startTurn();
     } 
-    
+ 
 	startTurn();
 });
 
 $(".sqr").click(function() {
-	if(player1Name=="" || player2Name==""){ 
-		alert("Press the 'Play' button");
-		return;
-	}
+
+
 	var row=$(this).parent().index();
 	var sqr=$(this).index();
 
@@ -62,20 +66,18 @@ $(".sqr").click(function() {
 		alert("Find another square");
 	}
 	if(hasWinner==1) {
-		alert("click on play to start a new game!")
+		alert("click on reset to start a new game!")
 		return;
 	}
 	if(turn==player1Name) {
 		moveCount++;
-		$(this).addClass("cross");
+		$(this).addClass("cross").fadeIn(300);
 		grid[row][sqr]=1;
 		var ifWon=winnerCheck(1,player1Name);
 		if(!ifWon){
 			if(moveCount>=9){
 				boardMsg("Cats Eyes!!")
 				moveCount=0;
-				
-				$("#play").text("playagain");
 				hasWinner=1;
 				return;
 			}else{
@@ -87,15 +89,13 @@ $(".sqr").click(function() {
 		}
 	}else if(turn==player2Name) {
 		moveCount++;
-		$(this).addClass("circle");
+		$(this).addClass("circle").fadeIn(300);
 		grid[row][sqr]=2;
 		var ifWon=winnerCheck(2,player2Name);
 		if(!ifWon){
 			if(moveCount>=9){
 				boardMsg("Cats Eyes!!")
 				moveCount=0;
-				
-				$("#play").text("playagain");
 				hasWinner=1;
 				return;
 			}else{
@@ -126,9 +126,24 @@ function winnerCheck(n,playerName) {
 		alert(playerName+"has won the game!!");
 		hasWinner=1;
 		moveCount=0;
-		$("#play").text("play again");
+		$('#reset').text("play again!");
 		return true;
 	}
 	return false;
 }
 
+var table=$("table");
+
+$("#reset").click(function() {
+	reset(table);
+	
+});
+
+function reset(table) {
+	table.find('td').each(function() {
+		$(this).removeClass('circle').removeClass('cross');
+		
+		setGame();
+		startTurn();
+	});
+}
