@@ -1,0 +1,50 @@
+body {
+  font-family: sans-serif;
+  margin: 0 auto;
+  text-align: center;
+  margin-top: 50px;
+  color: #FFF;
+  text-shadow: -1px -1px #333;
+  background: #333; }
+  body h1 {
+    font-weight: normal; }
+  body h2 {
+    color: #ffff99; }
+  body input {
+    color: #4D1D00;
+    font-family: Arial; }
+  body table {
+    border-collapse: collapse;
+    width: 300px;
+    margin: 0 auto; }
+    body table td {
+      width: 100px;
+      height: 100px;
+      border: 1px solid #555;
+      cursor: pointer;
+      text-align: center;
+      line-height: 25px; }
+      body table td:hover {
+        background-color: #ffff99; }
+      body table td:before {
+        font-size: 1.5em;
+        line-height: 1; }
+      body table td.cross:before {
+        content: "x";
+        color: lightblue;
+        font-size: 100px; }
+      body table td.circle:before {
+        content: "o";
+        color: pink;
+        font-size: 100px; }
+  body div {
+    text-align: center; }
+    body div.players {
+      width: 80%;
+      min-height: 100px;
+      margin: 0 auto; }
+    body div #playerId1, body div #playerId2 {
+      float: left;
+      width: 25%; }
+    body div #playerId2 {
+      float: right; }

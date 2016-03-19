@@ -1,0 +1,77 @@
+
+
+body {
+  font-family:sans-serif;
+  margin:0 auto;
+  text-align:center;
+  margin-top:50px;
+  color:#FFF;
+  text-shadow:-1px -1px #333;
+  background:#333;
+  h1 {
+    font-weight:normal;
+  }
+  h2 {
+    color:#ffff99;
+  }
+  input {
+    color:#4D1D00;
+    font-family: Arial;
+  }
+  
+  table {
+    border-collapse:collapse;
+    width:300px;
+    margin:0 auto;
+    td {
+      
+      width:100px;
+      height:100px;
+      border:1px solid #555;
+      cursor:pointer;
+      text-align: center;
+      line-height: 25px;
+      
+      &:hover{
+        background-color: #ffff99;
+      }
+      &:before {
+        font-size:1.5em;
+        line-height:1;
+
+      }
+
+      &.cross:before {
+        content:"x";
+        color:lightblue;
+        font-size: 100px;
+      }
+      &.circle:before {
+        content:"o";
+        color:pink;
+        font-size: 100px;
+      }
+    }
+  }
+
+  div{
+    text-align: center;
+  
+    &.players {
+      width: 80%;
+      min-height: 100px;
+      margin:0 auto;
+
+    }
+    
+    #playerId1,#playerId2 {
+      float:left;
+      width: 25%;
+
+    }
+    #playerId2 {
+      float:right;
+    }
+  } 
+  
+}
